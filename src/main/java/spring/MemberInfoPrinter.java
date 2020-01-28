@@ -1,5 +1,8 @@
 package spring;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+
 public class MemberInfoPrinter {
 	
 	private MemberDao memberDao;
@@ -17,11 +20,12 @@ public class MemberInfoPrinter {
 	}
 	
 //	setter 를 이용한 의존주입(DI)
-	
+	@Autowired
 	public void setMemberDao(MemberDao memberDao) {
 		this.memberDao = memberDao;
 	}
-	
+	@Autowired
+	@Qualifier("printer")
 	public void setPrinter(MemberPrinter printer) {
 		this.printer = printer;
 	}
