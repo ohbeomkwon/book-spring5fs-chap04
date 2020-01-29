@@ -55,10 +55,14 @@ public class AppCtx {
 		return new MemberListPrinter();
 	}
 	
-//	setter를 이용하여 Dependency를 Injection한다.
 	@Bean
 	public MemberInfoPrinter infoPrinter() {
-		return new MemberInfoPrinter();
+		MemberInfoPrinter infoPrinter = new MemberInfoPrinter();
+		infoPrinter.setPrinter(memberPrinter2());
+		return infoPrinter;
+//		MemberInfoPrinter 객체의 setter에 자동의존주입이 있지만, bean을 설정할 때 setter로 명시적 의존주입을 했다.
+//		결과는 명시적 의존주입을 한 경우보다 자동의존주입에 따라 객체가 주입된다.
+//		따라서 자동의존주입을 사용하는 것이 낫다.
 	}
 	
 	@Bean
